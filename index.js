@@ -6,7 +6,7 @@ import mongoDataBase from './mongodb/mongodb.js';
 
 import { handleValidationErrors, checkAuth } from './utils/index.js';
 
-import { ProductController, SwiperController, UserController, ReviewController } from './controllers/index.js';
+import { ProductController, SwiperController, UserController, ReviewController, SearchController } from './controllers/index.js';
 
 dotenv.config();
 mongoDataBase();
@@ -40,4 +40,5 @@ app.get('/products/paginate', ProductController.getProductsHome)
 app.get('/products/discounted', ProductController.getDiscounted);
 app.get('/products/filters', ProductController.getFiltered);
 app.get('/products/product/:id', ProductController.getOne);
-app.post('/products/product/:id/reviews/review/:userId', ReviewController.createReview)
+app.get('/products/search', SearchController.getSearch);
+app.post('/products/product/:id/reviews/review/:userId', ReviewController.createReview);

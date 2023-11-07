@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
-import ReviewModel from "./Review.js";
 
 const { Schema } = mongoose;
 
-const productScheme = new mongoose.Schema({
+const orderScheme = new mongoose.Schema({
   name: {
     type: String,
   },
@@ -43,11 +42,8 @@ const productScheme = new mongoose.Schema({
   sizes: {
     type: [Number],
   },
-  reviews: [ReviewModel.schema],
 });
 
-productScheme.index({ name: "text" });
+const Order = mongoose.model("Order", orderScheme);
 
-const Product = mongoose.model("Product", productScheme);
-
-export default Product;
+export default Order;
