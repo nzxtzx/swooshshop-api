@@ -21,6 +21,7 @@ app.listen(PORT || 5000, (err) => {
     return console.log(err);
   }
   console.log('Server in order');
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 app.get('/', (req, res) => {

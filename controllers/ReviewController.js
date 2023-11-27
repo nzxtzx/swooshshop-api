@@ -9,9 +9,13 @@ export const createReview = async (req, res) => {
       { new: true }
     );
 
+    console.log("product:", product)
+
     if (!editingProduct) {
       return res.status(404).json({ error: "Product not found" });
     }
+
+    console.log("id:",userId)
 
     const userId = req.params.userId;
 

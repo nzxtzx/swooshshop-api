@@ -73,6 +73,10 @@ export const getFiltered = async (req, res) => {
   try {
     const query = {};
 
+    if (req.query.sort && req.query.sort.toLowerCase() === 'asc') {
+      sortDirection = 1; 
+    }
+
     if (req.query.gender) {
       query["product.gender"] = req.query.gender;
     }
@@ -84,6 +88,10 @@ export const getFiltered = async (req, res) => {
     }
     if (req.query.sale) {
       query["product.sale"] = parseInt(req.query.sale);
+    }
+    if (req.query.discount === 'true') {
+      // Add a condition to filter products with the 'sale' field
+      query["product.sale"] = { $exists: true };
     }
     if (req.query.size) {
       query["product.sizes"] = { $elemMatch: { size: req.query.size, isAvailable: true } };
